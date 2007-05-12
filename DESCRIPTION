@@ -9,5 +9,5 @@ Description: build graphs from pathway databases, render them by Rgraphviz
 biocViews: GraphsAndNetworks
 License: LGPL
 URL: http://www.bioconductor.org
-SaveImage: yes
+LazyLoad: yes
 
