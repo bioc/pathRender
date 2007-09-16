@@ -1,5 +1,10 @@
+import("graph")
 
 export(
-  "rendercMAPPathway"
+  "rendercMAPPathway" , "graphcMAP"
 )
+
+exportClasses( "pwayGraph" )
+
+exportMethods( "plot" )
 

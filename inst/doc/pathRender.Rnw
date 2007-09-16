@@ -1,0 +1,74 @@
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+
+%\VignetteIndexEntry{pathRender overview}
+%\VignetteDepends{}
+%\VignetteKeywords{pathway visualization, graphs}
+%\VignettePackage{pathRender}
+
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+\title{pathRender: KEGG and Biocarta pathway visualization}
+\author{VJ Carey/Li Long}
+\maketitle
+
+\section{Introduction}
+
+Pathways are useful for organizing knowledge about
+molecular biological processes.  Several major
+catalogs of pathways are available, and this package
+addresses the visualization of pathways from KEGG and
+Biocarta.  Ultimately we want to be able to link
+statistical data to pathway representations to aid
+interpretation.  This package addresses only the
+graph structures, annotation, and rendering of pathway
+diagrams.  Much work remains to be done to 
+harvest in a scalable and customizable way the information
+provided on pathways.
+
+\section{Quick illustration}
+
+<<do1,fig=TRUE>>=
+library(pathRender)
+plot(G1 <- graphcMAP("p53pathway"))
+G1
+nodes(G1)[1:5]
+@
+
+As of 9/15/2007 it is not clear why some of the symbols
+are not translated to molecule or interaction terms.
+
+\end{document}
+

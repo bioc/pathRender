@@ -156,6 +156,6 @@ renderOnecMAPPathway <- function(i_mem, bi, bm) {
       eAttrs$weight <- c(eAttrs$weight, ig$eAttrs$weight)
   }
 
-  plot(G, nodeAttrs=nAttrs, edgeAttrs = eAttrs, recipEdges="distinct")
+  plot(as(G, "graphNEL"), nodeAttrs=nAttrs, edgeAttrs = eAttrs, recipEdges="distinct")
 }
 
