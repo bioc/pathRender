@@ -41,7 +41,7 @@
 \begin{document}
 %\setkeys{Gin}{width=0.55\textwidth}
 \title{pathRender: KEGG and Biocarta pathway visualization}
-\author{VJ Carey/Li Long}
+\author{VJ Carey (document)/Li Long (software)}
 \maketitle
 
 \section{Introduction}
@@ -58,17 +58,29 @@ diagrams.  Much work remains to be done to
 harvest in a scalable and customizable way the information
 provided on pathways.
 
-\section{Quick illustration}
+\section{Quick illustrations}
 
-<<do1,fig=TRUE>>=
+\begin{figure}
+<<do1,fig=TRUE,results=hide>>=
 library(pathRender)
 plot(G1 <- graphcMAP("p53pathway"))
 G1
 nodes(G1)[1:5]
 @
+\caption{A rendering of the p53 pathway according to Biocarta.}
+\end{figure}
 
 As of 9/15/2007 it is not clear why some of the symbols
 are not translated to molecule or interaction terms.
+
+\begin{figure}
+\setkeys{Gin}{width=1.21\textwidth}
+<<do2,fig=TRUE,height=12,width=12,results=hide>>=
+plot(G2 <- graphcMAP("raspathway"))
+@
+\caption{A rendering of the Ras pathway according to Biocarta.
+The height and width of the plotting surface are set to 12in each.}
+\end{figure}
 
 \end{document}
 
