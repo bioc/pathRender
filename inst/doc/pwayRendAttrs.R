@@ -19,7 +19,7 @@ pwayRendAttrs = function(g, AllBorder="transparent",
    fontsize = rep(AllFontsize, numn)
    names(fontsize) = nn
    list(color=color, fixedsize=fixedsize, fillcolor=fillcolvec, shape=shape,
-      fontsize=fontsize)
+      fontsize=fontsize )
 }
 
 aggFeatures = function( fvec, splitvar, aggfun ) {
@@ -49,10 +49,47 @@ featNamesFromAnno = function( annovec, ann2featMap ) {
 }
 
 reduceES = function( es, annovec, ann2featMap, pdvname="symbol" ) {
-  n1 = featNamesFromAnno( annovec, ann2featMap )
+  n1 = na.omit(featNamesFromAnno( annovec, ann2featMap ))
   es2 = es[ n1, ]
-  featureData(es2) = new("AnnotatedDataFrame", data.frame(symbol=names(n1)))
+  newdf = data.frame(names(n1))
+  names(newdf) = pdvname
+  rownames(newdf) = n1
+  featureData(es2) = new("AnnotatedDataFrame", newdf)
   es2
 }
   
+if (!("package:ALL" %in% search())) library(ALL)
+if (!exists("ALL")) data(ALL)
+if (!("package:graph" %in% search())) library(graph)
+data(MAPKsig)
+library(hgu95av2.db)
+X = reduceES( ALL, nodes(MAPKsig), revmap(hgu95av2SYMBOL) )
  
+
+setClass("coloredGraph", contains="graphNEL")
+
+setGeneric("colorNodes", function(g, nodeAss, pal, attgen) standardGeneric("colorNodes"))
+setMethod("colorNodes", c("graphNEL", "numeric", "character", "function"), function(g, nodeAss, pal, attgen) {
+  nn = nodes(g)
+  an = names(nodeAss)
+  if (!all(an %in% nn)) stop("nodeAss must have names a subset of nodes(g)")
+  ncol = length(pal)
+  bounds = seq(min(nodeAss)-.01, max(nodeAss)+.01, length=ncol+1)
+  asscut = cut( nodeAss, breaks = bounds )
+  colcodes = as.numeric(asscut)
+  names(colcodes) = names(nodeAss)
+  fullco = rep(0, length(nodes(g)))
+  names(fullco) = nodes(g)
+  fullco[ names(colcodes) ] = as.numeric(colcodes)
+  natt = attgen(g, fillcolor=fullco)
+  g = new("coloredGraph", nodes=nodes(g), edgeL=edgeL(g), edgemode=edgemode(g))
+  g@graphData$nodeRendAttr = natt
+  g@graphData$pal = pal
+  g
+})
+
+setMethod("plot", "coloredGraph", function(x, y,  ...) {
+  oldp = palette(x@graphData$pal)
+  plot(as(x, "graphNEL"), nodeAttrs = x@graphData$nodeRendAttr )
+  palette(oldp)
+})
