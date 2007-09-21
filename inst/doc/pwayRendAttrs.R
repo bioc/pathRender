@@ -48,13 +48,29 @@ featNamesFromAnno = function( annovec, ann2featMap ) {
   ans
 }
 
-reduceES = function( es, annovec, ann2featMap, pdvname="symbol" ) {
+reduceES = function( es, annovec, ann2featMap, pdvname="symbol", collapseFun=NULL ) {
+#
+# es is an ExpressionSet with featureNames f, say, and
+# annovec is a collection of annotations a.  ann2featMap
+# is either an AtomicAnnDbBimap with keys in a and range in f, or
+# a list with element names in a and element values in f
+#
+# a new ExpressionSet is computed with features restricted to those
+# mapped from annovec
+#
   n1 = na.omit(featNamesFromAnno( annovec, ann2featMap ))
   es2 = es[ n1, ]
   newdf = data.frame(names(n1))
   names(newdf) = pdvname
   rownames(newdf) = n1
   featureData(es2) = new("AnnotatedDataFrame", newdf)
+  if (!is.null(collapseFun)) {
+     splv = as.character(newdf[,1])
+     s1 = aggFeatures( exprs(es2)[,1], splv, collapseFun )
+     ans = apply( exprs(es2), 2, aggFeatures, splv, collapseFun )
+     rownames(ans) = names(s1)
+     return(new("ExpressionSet", exprs=ans, phenoData=phenoData(es)))
+  }
   es2
 }
   
@@ -93,3 +109,16 @@ setMethod("plot", "coloredGraph", function(x, y,  ...) {
   plot(as(x, "graphNEL"), nodeAttrs = x@graphData$nodeRendAttr )
   palette(oldp)
 })
+
+quantizeByRow = function(es, stratFun = function(x) cut(x, quantile(x, c(0,.25,.5,.75,1)) )){
+ fn = featureNames(es) # lost by apply
+ exprs(es) = t(apply(exprs(es), 1, function(x) as.numeric(stratFun(x))))
+ featureNames(es) = fn
+ es
+}
+ 
+plotExGraph = function(g, es, sampind = 1, pal=colorRampPalette(brewer.pal(9,"Blues"))(length(nodes(g))),
+   attgen=pwayRendAttrs) {
+ h = colorNodes(g, exprs(es)[,sampind], pal, attgen)
+ plot(h)
+}
