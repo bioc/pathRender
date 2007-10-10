@@ -35,7 +35,7 @@ graphcMAP = function (pname)
         }
     G = new("pwayGraph", nodes=nodes(G), edgeL=edgeL(G), edgemode=edgemode(G))
     G@pwaySource = type
-    G@graphData = list()
+    ## G@graphData = list()
     G@graphData$eAttrs=eAttrs
     nnode = length(nAttrs$label)
     nnames = names(nAttrs$label)
