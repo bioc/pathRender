@@ -38,9 +38,13 @@ revAnnoEnv = function(env) {
 }
 
 featNamesFromAnno = function( annovec, ann2featMap ) {
-  if (is(ann2featMap, "AtomicAnnDbBimap")) anslist =  mget( annovec, ann2featMap, ifnotfound=NA ) 
+  if (is(ann2featMap, "AtomicAnnDbBimap")) 
+     anslist =  mget( annovec, ann2featMap, ifnotfound=NA ) 
   else if (is(ann2featMap, "list")) 
-           anslist = ann2featMap[ match(annovec, names(ann2featMap)) ]
+     anslist = ann2featMap[ match(annovec, names(ann2featMap)) ]
+  else
+     anslist = list()
+
   lens = sapply(anslist,length)
   nn = rep(names(anslist), lens)
   ans = unlist(anslist)
