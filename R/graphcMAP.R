@@ -1,4 +1,3 @@
-setClass("pwayGraph", representation(pwaySource="character"), contains="graphNEL")
 
 graphcMAP = function (pname) 
 {
@@ -35,7 +34,7 @@ graphcMAP = function (pname)
         }
     G = new("pwayGraph", nodes=nodes(G), edgeL=edgeL(G), edgemode=edgemode(G))
     G@pwaySource = type
-    ## G@graphData = list()
+    ## G@graphData = list()          this somehow references to edgemode
     G@graphData$eAttrs=eAttrs
     nnode = length(nAttrs$label)
     nnames = names(nAttrs$label)
@@ -46,9 +45,4 @@ graphcMAP = function (pname)
     G@graphData$nAttrs=nAttrs
     G
 }
-
-setMethod("plot", "pwayGraph", function(x, y, ...) {
-   plot(as(x, "graphNEL"), nodeAttrs=x@graphData$nAttrs, edgeAttrs=x@graphData$eAttrs,
-    recipEdges="distinct", ...)
-})
 
