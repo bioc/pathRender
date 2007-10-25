@@ -58,7 +58,12 @@ reduceES = function( es, annovec, ann2featMap, pdvname="symbol", collapseFun=NUL
 # a new ExpressionSet is computed with features restricted to those
 # mapped from annovec
 #
-  n1 = na.omit(featNamesFromAnno( annovec, ann2featMap ))
+  n1 = featNamesFromAnno( annovec, ann2featMap )
+  
+  if ( is.null(n1) ) stop("n1 is null")
+
+  n1 = na.omit(n1)
+
   es2 = es[ n1, ]
   newdf = data.frame(names(n1))
   names(newdf) = pdvname
@@ -77,9 +82,12 @@ reduceES = function( es, annovec, ann2featMap, pdvname="symbol", collapseFun=NUL
 if (!("package:ALL" %in% search())) library(ALL)
 if (!exists("ALL")) data(ALL)
 if (!("package:graph" %in% search())) library(graph)
+library("RColorBrewer")
+
 data(MAPKsig)
 library(hgu95av2.db)
-X = reduceES( ALL, nodes(MAPKsig), revmap(hgu95av2SYMBOL) )
+
+#X = reduceES( ALL, nodes(MAPKsig), revmap(hgu95av2SYMBOL) )
  
 
 setClass("coloredGraph", contains="graphNEL")
