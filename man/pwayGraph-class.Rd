@@ -3,8 +3,7 @@
 \alias{pwayGraph-class}
 \alias{plot,pwayGraph-method}
 
-\title{Class "pwayGraph"}
-%LL  -- extension to graphNEL for pathway rendering}
+\title{Class "pwayGraph" -- extension to graphNEL for pathway rendering}
 
 \description{ extension to graphNEL for pathway rendering }
 
