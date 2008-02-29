@@ -1,0 +1,20 @@
+        **************************************************
+        *                                                *
+        *              2.2 SERIES NEWS                   *
+        *                                                *
+        **************************************************
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+    o added plotExGraph, reduceES and coloredGraph support for
+      cleaner visualization of networks colored via expression-related
+      map
+
+
+NEW FEATURES
+
+    o plotExGraph
+
+BUG FIXES
+
+
