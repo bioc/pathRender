@@ -1,10 +1,13 @@
 import("graph")
 
+importFrom("AnnotationDbi", "mget")
+
 export(
-  "rendercMAPPathway" , "graphcMAP"
+  "rendercMAPPathway" , "graphcMAP", "pwayRendAttrs",
+  "reduceES", "plotExGraph", "colorNodes"
 )
 
-exportClasses( "pwayGraph" )
+exportClasses( "pwayGraph", "coloredGraph" )
 
 exportMethods( "plot" )
 

@@ -1,9 +1,10 @@
 Package: pathRender
-Version: 1.7.3
+Version: 1.7.4
 Title: Render molecular pathways
 Author: Li Long <lilong@isb-sib.ch>
 Maintainer: Li Long <lilong@isb-sib.ch>
-Depends: graph, Rgraphviz, cMAP
+Depends: graph, Rgraphviz, RColorBrewer, cMAP, AnnotationDbi
+Suggests: ALL, hgu95av2.db
 Description: build graphs from pathway databases, render them by Rgraphviz
 biocViews: GraphsAndNetworks
 License: LGPL
