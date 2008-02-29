@@ -1,0 +1,127 @@
+
+%\VignetteIndexEntry{pathway graphs colored by expression map}
+%\VignetteDepends{}
+%\VignetteKeywords{Expression Analysis, Pathways}
+%\VignettePackage{pathRender}
+
+%
+% NOTE -- ONLY EDIT THE .Rnw FILE!!!  The .tex file is
+% likely to be overwritten.
+%
+\documentclass[12pt]{article}
+
+\usepackage{amsmath,pstricks}
+\usepackage[authoryear,round]{natbib}
+\usepackage{hyperref}
+
+
+\textwidth=6.2in
+\textheight=8.5in
+%\parskip=.3cm
+\oddsidemargin=.1in
+\evensidemargin=.1in
+\headheight=-.3in
+
+\newcommand{\scscst}{\scriptscriptstyle}
+\newcommand{\scst}{\scriptstyle}
+
+
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+\newcommand{\Rmethod}[1]{{\texttt{#1}}}
+\newcommand{\Rfunarg}[1]{{\texttt{#1}}}
+\newcommand{\Rclass}[1]{{\textit{#1}}}
+
+\textwidth=6.2in
+
+\bibliographystyle{plainnat} 
+ 
+\begin{document}
+%\setkeys{Gin}{width=0.55\textwidth}
+
+\title{Rendering pathways to convey quantitative genomic relationships}
+\author{VJ Carey et al}
+\maketitle
+
+\section{Introduction}
+
+Given an R graph representing a biological pathway and a
+vector of numbers (e.g., estimated
+levels of gene expression, or quantile of gene expression
+value in a distribution over samples) linked to the nodes of the pathway (e.g., genes),
+we wish to display the graph with nodes colored to
+convey the relationships among the numbers.
+
+Our primary tool for rendering graphs is \Rpackage{Rgraphviz}.
+This package uses AT\&T graphviz to compute layouts, and various
+aspects of R graphics to create renderings.
+
+Our primary tools for creating pathway graphs are the
+\Rpackage{graph} and \Rpackage{pathRender} packages.
+
+In this vignette and associated code, we aim to simplify the
+use of software in these components to allow the intended renderings
+to be created in a flexible way.
+
+@
+
+\section{An example}
+
+\subsection{A pathway graph}
+
+The \Rpackage{graph} package contains a custom-made graph representing
+the pancreatic cancer  initiation pathway.  First we render it in isolation from data:
+<<lkmapk,fig=TRUE>>=
+library(graph)
+library(Rgraphviz)
+data(pancrCaIni)
+plot(pancrCaIni, nodeAttrs=pwayRendAttrs(pancrCaIni))
+@
+
+Note that the  default rendering of the pathway graph is hard to read; we
+use the new \Rfunction{pwayRendAttrs} function to generate attributes that improve readability.
+
+\subsection{An ExpressionSet and its reduction}
+
+We will work with ALL.
+<<doall>>=
+library(ALL)
+if (!exists("ALL")) data(ALL)
+@
+
+A basic problem is to reduce the information obtained using the whole-genome microarray to
+a set of numbers relevant to the pathway we wish to render.  The \Rfunction{reduceES} function
+helps with this.  Given a vector of annotation tokens (e.g., HUGO gene symbols) and
+a map from symbols to associated microarray probes, \Rfunction{reduceES} restricts the
+assay data to relevant probes.  The map parameter can be either an AtomicAnnDbBimap as
+created in the *.db annotation packages, or a list with annotation tokens as element names
+and vectors probe identifiers as elements.  Here we illustrate the use of the Bimap:
+
+<<doredu>>=
+if ("package:hgu95av2" %in% search()) detach("package:hgu95av2")
+library(hgu95av2.db)
+red1 = reduceES( ALL, nodes(pancrCaIni), revmap(hgu95av2SYMBOL), "symbol" )
+red1
+pData(featureData(red1))
+@
+
+Note that the reduceES creates a featureData variable and that there are repetitions
+of values of this variable.  We can specify that we want to collapse repetitions
+by specifying a function for the collapseFun parameter.  We will use mean.
+
+<<dored2>>=
+collap1 = reduceES( ALL, nodes(pancrCaIni), revmap(hgu95av2SYMBOL), "symbol", mean )
+collap1
+@
+
+\subsection{A rendering}
+
+Now we will render information on one sample from the reduced data.
+<<dothp, fig=TRUE>>=
+library(RColorBrewer)
+plotExGraph(pancrCaIni, collap1, 1)
+@
+
+
+\end{document}
