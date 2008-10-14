@@ -22,8 +22,8 @@ these are graphNEL instances with some additional graphData
   }
 }
 \section{Extends}{
-Class \code{"\linkS4class{graphNEL}"}, directly.
-Class \code{"\linkS4class{graph}"}, by class "graphNEL", distance 2.
+Class \code{"\link[graph]{graphNEL-class}"}, directly.
+Class \code{"\link[graph]{graph-class}"}, by class "graphNEL", distance 2.
 }
 \section{Methods}{
   \describe{
