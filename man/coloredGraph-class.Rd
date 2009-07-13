@@ -14,7 +14,6 @@ these are graphNEL instances with some additional graphData
 	 \describe{
     \item{\code{nodes}:}{Object of class \code{"vector"} ~~ }
     \item{\code{edgeL}:}{Object of class \code{"list"} ~~ }
-    \item{\code{edgemode}:}{Object of class \code{"character"} ~~ }
     \item{\code{edgeData}:}{Object of class \code{"attrData"} ~~ }
     \item{\code{nodeData}:}{Object of class \code{"attrData"} ~~ }
     \item{\code{renderInfo}:}{Object of class \code{"renderInfo"} ~~ }

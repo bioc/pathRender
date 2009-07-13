@@ -21,12 +21,11 @@ surface is big enough.
     \item{\code{nodes}:}{Object of class \code{"vector"} pathway constituents in the native vocabulary }
     \item{\code{edgeL}:}{Object of class \code{"list"} constituent
 relations in the native vocabulary }
-    \item{\code{edgemode}:}{Object of class \code{"character"} directed,
-typically }
     \item{\code{edgeData}:}{Object of class \code{"attrData"} relationship
 attributes }
     \item{\code{nodeData}:}{Object of class \code{"attrData"} node
 attributes }
+    \item{\code{renderInfo}:}{Object of class \code{"renderInfo"} render info }
     \item{\code{graphData}:}{Object of class \code{"list"} this holds
 the special rendering attributes for edges and nodes, for nodes it
 seems particularly important to have fixedsize = FALSE}
