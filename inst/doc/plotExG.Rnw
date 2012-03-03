@@ -74,6 +74,7 @@ The \Rpackage{graph} package contains a custom-made graph representing
 the pancreatic cancer  initiation pathway.  First we render it in isolation from data:
 <<lkmapk,fig=TRUE>>=
 library(graph)
+library(pathRender)
 library(Rgraphviz)
 data(pancrCaIni)
 plot(pancrCaIni, nodeAttrs=pwayRendAttrs(pancrCaIni))
