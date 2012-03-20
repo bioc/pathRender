@@ -2,7 +2,7 @@
 \docType{class}
 \alias{coloredGraph-class}
 \alias{pwayRendAttrs}
-\alias{plot,coloredGraph-method}
+\alias{plot,coloredGraph,ANY-method}
 
 \title{Class "coloredGraph" }
 \description{	 a graph to which color attributes have been attached }
@@ -29,16 +29,6 @@ Class \code{"\link[graph]{graph-class}"}, by class "graphNEL", distance 2.
     \item{plot}{\code{signature(x = "coloredGraph")}: ... }
 	 }
 }
-%\references{ ~put references to the literature/web site here ~ }
-%\author{ ~~who you are~~ }
-%\note{ ~~further notes~~ }
-
-% ~Make other sections like Warning with \section{Warning }{....} ~
-%
-%\seealso{
-%	~~objects to See Also as \code{\link{~~fun~~}}, ~~~
-%	or \code{\linkS4class{CLASSNAME}} for links to other classes
-%}
 \examples{
 showClass("coloredGraph")
 example(randomGraph)

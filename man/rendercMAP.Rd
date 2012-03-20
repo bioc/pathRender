@@ -25,8 +25,6 @@ None.  A graphical output is presented.
 }
 \author{ Li Long <li.long@isb-sib.ch> }
 
-\seealso{ }
-
 \examples{
    rendercMAPPathway("plateletapppathway")
    rendercMAPPathway("plateletapppathway", 5)

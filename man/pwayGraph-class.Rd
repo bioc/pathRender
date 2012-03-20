@@ -1,7 +1,7 @@
 \name{pwayGraph-class}
 \docType{class}
 \alias{pwayGraph-class}
-\alias{plot,pwayGraph-method}
+\alias{plot,pwayGraph,ANY-method}
 
 \title{Class "pwayGraph" -- extension to graphNEL for pathway rendering}
 
@@ -43,17 +43,7 @@ Class \code{\link[graph]{graph-class}}, by class "graphNEL", distance 2.
     }
 }
 
-%\references{ ~put references to the literature/web site here ~ }
-
 \author{ Vince Carey <stvjc@channing.harvard.edu> }
-
-%\note{ ~~further notes~~ }
-% ~Make other sections like Warning with \section{Warning }{....} ~
-%
-%\seealso{
-%	~~objects to See Also as \code{\link{~~fun~~}}, ~~~
-%	 \code{\linkS4class{CLASSNAME}} for links to other classes
-%}
 
 \examples{
 showClass("pwayGraph")
