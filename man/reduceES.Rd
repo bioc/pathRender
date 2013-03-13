@@ -39,6 +39,6 @@ library(ALL)
 data(ALL)
 library(hgu95av2.db)
 rr = revmap(hgu95av2SYMBOL)
-exprs(reduceES(ALL[,1:3], c("DDR1", "CPNE1"), rr, "sym", mean))
+exprs(reduceES(ALL[,1:3], c("BCL2", "CPNE1"), rr, "sym", mean))
 }
 \keyword{ models }
