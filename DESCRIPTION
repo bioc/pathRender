@@ -1,8 +1,8 @@
 Package: pathRender
-Version: 1.35.1
+Version: 1.35.2
 Title: Render molecular pathways
 Author: Li Long <lilong@isb-sib.ch>
-Maintainer: Li Long <lilong@isb-sib.ch>
+Maintainer: Vince Carey <stvjc@channing.harvard.edu>
 Depends: graph, Rgraphviz, RColorBrewer, cMAP, AnnotationDbi, methods, stats4
 Suggests: ALL, hgu95av2.db
 Description: build graphs from pathway databases, render them by
