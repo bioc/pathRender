@@ -1,8 +1,12 @@
+import("cMAP")
 import("graph")
+import("methods")
+import("RColorBrewer")
+
 importMethodsFrom("Rgraphviz", "plot")
 
 importFrom("AnnotationDbi", "mget")
-importFrom("graphics", "plot")
+importFrom("stats4", "plot")
 
 export(
   "rendercMAPPathway" , "graphcMAP", "pwayRendAttrs",
