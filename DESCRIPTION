@@ -1,5 +1,5 @@
 Package: pathRender
-Version: 1.81.0
+Version: 1.81.1
 Title: Render molecular pathways
 Author: Li Long <lilong@isb-sib.ch>
 Maintainer: Vince Carey <stvjc@channing.harvard.edu>
@@ -11,3 +11,4 @@ License: LGPL
 URL: http://www.bioconductor.org
 LazyLoad: yes
 biocViews: GraphAndNetwork, Pathways, Visualization
+PackageStatus: Deprecated
